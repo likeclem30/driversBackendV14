@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    namespace: blog
+    labels:
+        app: drivers-service
+    name: drivers-service
+spec:
+    ports:
+        - name: drivers-backend
+          port: 80
+          targetPort: 7000
+    selector:
+        app: drivers-backend
+    type: NodePort

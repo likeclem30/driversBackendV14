@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: drivers-backend
+    labels:
+        app: drivers-backend
+    namespace: blog
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: drivers-backend
+    template:
+        metadata:
+            labels:
+                app: drivers-backend
+        spec:
+            containers:
+                - name: drivers-backend-service
+                  image: drivers_server:latest
+                  imagePullPolicy: Never
+                  ports:
+                     - containerPort: 7000
+                  env:
+                      - name: DATABASE_ENGINE
+                        value: POSTGRESQL
+                      - name: POSTGRES_DB
+                        value: drivers
+                      - name: POSTGRES_USER
+                        value: postgres
+                      - name: POSTGRES_PASSWORD
+                        value: somepassword
+                      - name: POSTGRES_PORT
+                        value: "5432"
+                      - name: POSTGRES_HOST
+                        value: "127.0.0.1"
+
+                - name: drivers-backend-db
+                  image: drivers_backend_db:latest
+                  imagePullPolicy: Never

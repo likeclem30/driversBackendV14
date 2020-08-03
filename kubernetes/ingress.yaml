@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: drivers-backend-ingress
+    namespace: blog
+spec:
+    rules:
+        - host: drivers.blog.local
+          http:
+            paths:
+              - backend:
+                  serviceName: drivers-service
+                  servicePort: 80
+                path: /

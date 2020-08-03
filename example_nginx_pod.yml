@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: zeno
+spec:
+  containers:
+    - name: nginx
+      image: library/nginx:latest
